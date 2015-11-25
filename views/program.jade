@@ -1,0 +1,121 @@
+extends layout
+
+block content
+    div(class='container')
+        div(class='page-header')
+            h1 프로그램관리
+            h5 '프로그램관리'에서는 한진EMR에 등록된 프로그램, 폼 및 기능을 추가, 삭제, 조회 변경하실 수 있습니다.
+        table(class='table table-bordered')
+            thead
+                tr
+                    th(style='width: 25%;') 프로그램
+                    th(style='width: 25%;') 폼
+                    th(style='width: 50%;') 기능
+            tbody
+                tr
+                    td(rowspan='2')
+                        div(style='float: right;')
+                            button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                            button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                        div 프로그램 이름
+                        div 프로그램 설명
+                        div
+                            button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                    td
+                        div(style='float: right;')
+                            button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                            button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                        div 폼 이름
+                        div 폼 설명
+                    td
+                        ul(class='list-unstyled')
+                            li(style='margin-bottom: 3px; clear: both;')
+                                span 기능 이름
+                                span(style='margin-left: 10px;') 기능 설명
+                                span(style='float: right;')
+                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px; clear: both;') 삭제
+                            li(style='margin-bottom: 3px; clear: both;')
+                                span 기능 이름
+                                span(style='margin-left: 10px;') 기능 설명
+                                span(style='float: right;')
+                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                            li(style='margin-bottom: 3px; clear: both;')
+                                span 기능 이름
+                                span(style='margin-left: 10px;') 기능 설명
+                                span(style='float: right')
+                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                            li(style='margin-bottom: 3px;')
+                                button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                tr
+                    td
+                        div(style='float: right;')
+                            button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                            button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                        div 폼 이름
+                        div 폼 설명
+                        div
+                            button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                    td
+                        ul(class='list-unstyled')
+                            li(style='margin-bottom: 3px; clear: both;')
+                                span 기능 이름
+                                span(style='margin-left: 10px;') 기능 설명
+                                span(style='float: right;')
+                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px; clear: both;') 삭제
+                            li(style='margin-bottom: 3px; clear: both;')
+                                span 기능 이름
+                                span(style='margin-left: 10px;') 기능 설명
+                                span(style='float: right;')
+                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                            li(style='margin-bottom: 3px; clear: both;')
+                                span 기능 이름
+                                span(style='margin-left: 10px;') 기능 설명
+                                span(style='float: right')
+                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                            li(style='margin-bottom: 3px;')
+                                button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                tr
+                    td
+                        div(style='float: right;')
+                            button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                            button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                        div 프로그램 이름
+                        div 프로그램 설명
+                        div
+                            button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                    td
+                        div(style='float: right;')
+                            button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                            button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                        div 폼 이름
+                        div 폼 설명
+                        div
+                            button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                    td
+                        ul(class='list-unstyled')
+                            li(style='margin-bottom: 3px; clear: both;')
+                                span 기능 이름
+                                span(style='margin-left: 10px;') 기능 설명
+                                span(style='float: right;')
+                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px; clear: both;') 삭제
+                            li(style='margin-bottom: 3px; clear: both;')
+                                span 기능 이름
+                                span(style='margin-left: 10px;') 기능 설명
+                                span(style='float: right;')
+                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                            li(style='margin-bottom: 3px; clear: both;')
+                                span 기능 이름
+                                span(style='margin-left: 10px;') 기능 설명
+                                span(style='float: right')
+                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                            li(style='margin-bottom: 3px;')
+                                button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
