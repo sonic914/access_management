@@ -10,6 +10,9 @@ html
     script(type='text/javascript', src='javascripts/jquery-2.1.4.js').
     script.
       $(document).ready(function () {
+        //table rowspan
+        var programRows = $('#programListTable').find('tbody tr td[group="program"]');
+
 
         // 버튼 클릭 이벤트트
         $('button').click(function () {

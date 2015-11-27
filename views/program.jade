@@ -17,13 +17,13 @@ block content
                 - for (var i = 0; i< data.length; i++)
                     tr
                         td(style='display:none;')= data[i].id
-                        td
+                        td(class=data[i].programName, group='program')
                             div(style='float: right;')
                                 button(name='prg_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
                                 button(name='prg_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
                             div: input(name='prgName', type='text', value=data[i].programName, style='border:0;', readonly='readOnly')
                             div: input(name='prgExp', type='text', value=data[i].programExp, style='border:0;', readonly='readOnly')
-                        td
+                        td(class=data[i].formName)
                             div(style='float: right;')
                                 button(name='form_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
                                 button(name='form_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
@@ -44,8 +44,8 @@ block content
                         if equalForm
                             tr
                                 td(style='display:none;')
-                                td
-                                td
+                                td(class=data[i].programName, group='program')
+                                td(class=data[i].formName)
                                 td
                                     div: button(name='fun_A', type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
                                     div: input(name='funName', type='text', value='', style='display:none;')
@@ -53,8 +53,8 @@ block content
                         if equalProgram
                             tr
                                 td(style='display:none;')
-                                td
-                                td
+                                td(class=data[i].programName, group='program')
+                                td(class=data[i].formName)
                                     div: button(name='form_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
                                     div: input(name='formName', type='text', value='', style='display:none;')
                                     div: input(name='formExp', type='text', value='', style='display:none;')
@@ -62,8 +62,8 @@ block content
                     else
                         tr
                             td(style='display:none;')
-                            td
-                            td
+                            td(class=data[i].programName, group='program')
+                            td(class=data[i].formName)
                                 div: button(name='form_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
                                 div: input(name='formName', type='text', value='', style='display:none;')
                                 div: input(name='formExp', type='text', value='', style='display:none;')
@@ -72,10 +72,10 @@ block content
                                 div: input(name='funName', type='text', value='', style='display:none;')
                                 div: input(name='funExp', type='text', value='', style='display:none;')
                         tr
-                        td(style='display:none;')
-                            td
+                            td(style='display:none;')
+                            td(class=data[i].programName, group='program')
                                 div: button(name='prg_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
                                 div: input(name='prgName', type='text', value='', style='display:none;')
                                 div: input(name='prgExp', type='text', value='', style='display:none;')
-                            td
+                            td(class=data[i].formName)
                             td
