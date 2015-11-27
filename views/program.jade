@@ -4,118 +4,78 @@ block content
     div(class='container')
         div(class='page-header')
             h1 프로그램관리
-            h5 '프로그램관리'에서는 한진EMR에 등록된 프로그램, 폼 및 기능을 추가, 삭제, 조회 변경하실 수 있습니다.
-        table(class='table table-bordered')
-            thead
-                tr
-                    th(style='width: 25%;') 프로그램
-                    th(style='width: 25%;') 폼
-                    th(style='width: 50%;') 기능
-            tbody
-                tr
-                    td(rowspan='2')
-                        div(style='float: right;')
-                            button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                            button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                        div 프로그램 이름
-                        div 프로그램 설명
-                        div
-                            button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
-                    td
-                        div(style='float: right;')
-                            button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                            button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                        div 폼 이름
-                        div 폼 설명
-                    td
-                        ul(class='list-unstyled')
-                            li(style='margin-bottom: 3px; clear: both;')
-                                span 기능 이름
-                                span(style='margin-left: 10px;') 기능 설명
-                                span(style='float: right;')
-                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px; clear: both;') 삭제
-                            li(style='margin-bottom: 3px; clear: both;')
-                                span 기능 이름
-                                span(style='margin-left: 10px;') 기능 설명
-                                span(style='float: right;')
-                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                            li(style='margin-bottom: 3px; clear: both;')
-                                span 기능 이름
-                                span(style='margin-left: 10px;') 기능 설명
-                                span(style='float: right')
-                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                            li(style='margin-bottom: 3px;')
-                                button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
-                tr
-                    td
-                        div(style='float: right;')
-                            button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                            button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                        div 폼 이름
-                        div 폼 설명
-                        div
-                            button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
-                    td
-                        ul(class='list-unstyled')
-                            li(style='margin-bottom: 3px; clear: both;')
-                                span 기능 이름
-                                span(style='margin-left: 10px;') 기능 설명
-                                span(style='float: right;')
-                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px; clear: both;') 삭제
-                            li(style='margin-bottom: 3px; clear: both;')
-                                span 기능 이름
-                                span(style='margin-left: 10px;') 기능 설명
-                                span(style='float: right;')
-                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                            li(style='margin-bottom: 3px; clear: both;')
-                                span 기능 이름
-                                span(style='margin-left: 10px;') 기능 설명
-                                span(style='float: right')
-                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                            li(style='margin-bottom: 3px;')
-                                button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
-                tr
-                    td
-                        div(style='float: right;')
-                            button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                            button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                        div 프로그램 이름
-                        div 프로그램 설명
-                        div
-                            button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
-                    td
-                        div(style='float: right;')
-                            button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                            button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                        div 폼 이름
-                        div 폼 설명
-                        div
-                            button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
-                    td
-                        ul(class='list-unstyled')
-                            li(style='margin-bottom: 3px; clear: both;')
-                                span 기능 이름
-                                span(style='margin-left: 10px;') 기능 설명
-                                span(style='float: right;')
-                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px; clear: both;') 삭제
-                            li(style='margin-bottom: 3px; clear: both;')
-                                span 기능 이름
-                                span(style='margin-left: 10px;') 기능 설명
-                                span(style='float: right;')
-                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                            li(style='margin-bottom: 3px; clear: both;')
-                                span 기능 이름
-                                span(style='margin-left: 10px;') 기능 설명
-                                span(style='float: right')
-                                    button(type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
-                                    button(type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                            li(style='margin-bottom: 3px;')
-                                button(type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                h5 '프로그램관리'에서는 한진EMR에 등록된 프로그램, 폼 및 기능을 추가, 삭제, 조회 변경하실 수 있습니다.
+            table(id='programListTable', class='table table-bordered')
+                thead
+                    tr
+                        th(style='display: none;') id
+                        th(style='width: 25%;') 프로그램
+                        th(style='width: 25%;') 폼
+                        th(style='width: 45%;') 기능
+                tbody
+                - var data =[{id:1, programName:'pro1', programExp:'pro1입니다', formName:'form1', formExp:'form1입니다', funName:'fun1', funExp:'fun1'}, {id:2, programName:'pro1', programExp:'pro1입니다', formName:'form1', formExp:'form1입니다', funName:'fun2', funExp:'fun2'}, {id:3, programName:'pro1', programExp:'pro1입니다', formName:'form2', formExp:'form2입니다', funName:'fun3', funExp:'fun3'}, {id:4, programName:'pro2', programExp:'pro2입니다', formName:'form3', formExp:'form3입니다', funName:'fun4', funExp:'fun4'}, {id:5, programName:'pro2', programExp:'pro2입니다', formName:'form3', formExp:'form3입니다', funName:'fun5', funExp:'fun5'}, {id:6, programName:'pro3', programExp:'pro3입니다', formName:'form4', formExp:'form4입니다', funName:'fun6', funExp:'fun6'}, {id:7, programName:'pro3', programExp:'pro3입니다', formName:'form5', formExp:'form5입니다', funName:'fun7', funExp:'fun7'}, {id:8, programName:'pro4', programExp:'pro4입니다', formName:'form6', formExp:'form6입니다', funName:'fun8', funExp:'fun8'}]
+                - for (var i = 0; i< data.length; i++)
+                    tr
+                        td(style='display:none;')= data[i].id
+                        td
+                            div(style='float: right;')
+                                button(name='prg_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                button(name='prg_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                            div: input(name='prgName', type='text', value=data[i].programName, style='border:0;', readonly='readOnly')
+                            div: input(name='prgExp', type='text', value=data[i].programExp, style='border:0;', readonly='readOnly')
+                        td
+                            div(style='float: right;')
+                                button(name='form_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                button(name='form_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                            div: input(name='formName', type='text', value=data[i].formName, style='border:0;', readonly='readOnly')
+                            div: input(name='formExp', type='text', value=data[i].formExp, style='border:0;', readonly='readOnly')
+                        td
+                            ul(class='list-unstyled')
+                                li(style='margin-bottom: 3px; clear: both;')
+                                    span: input(name='funName', type='text', value= data[i].funName, style='border:0;', readonly='readOnly')
+                                    span: input(name='funExp', type='text', value= data[i].funExp, style='border:0;', readonly='readOnly')
+                                    span(style='float: right;')
+                                        button(name='fun_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                        button(name='fun_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px; clear: both;') 삭제
+
+                    if (i != data.length -1)
+                        - var equalProgram = Boolean(data[i].programName != data[i+1].programName);
+                        - var equalForm= Boolean(data[i].formName != data[i+1].formName);
+                        if equalForm
+                            tr
+                                td(style='display:none;')
+                                td
+                                td
+                                td
+                                    div: button(name='fun_A', type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                                    div: input(name='funName', type='text', value='', style='display:none;')
+                                    div: input(name='funExp', type='text', value='', style='display:none;')
+                        if equalProgram
+                            tr
+                                td(style='display:none;')
+                                td
+                                td
+                                    div: button(name='form_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                                    div: input(name='formName', type='text', value='', style='display:none;')
+                                    div: input(name='formExp', type='text', value='', style='display:none;')
+                                td
+                    else
+                        tr
+                            td(style='display:none;')
+                            td
+                            td
+                                div: button(name='form_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                                div: input(name='formName', type='text', value='', style='display:none;')
+                                div: input(name='formExp', type='text', value='', style='display:none;')
+                            td
+                                div: button(name='fun_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                                div: input(name='funName', type='text', value='', style='display:none;')
+                                div: input(name='funExp', type='text', value='', style='display:none;')
+                        tr
+                        td(style='display:none;')
+                            td
+                                div: button(name='prg_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                                div: input(name='prgName', type='text', value='', style='display:none;')
+                                div: input(name='prgExp', type='text', value='', style='display:none;')
+                            td
+                            td

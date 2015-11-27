@@ -7,6 +7,74 @@ html
     title 제주한라병원 권한관리프로그램
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', integrity='sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==', crossorigin='anonymous')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript', src='javascripts/jquery-2.1.4.js').
+    script.
+      $(document).ready(function () {
+
+        // 버튼 클릭 이벤트트
+        $('button').click(function () {
+          var buttonName = '';
+          buttonName = $(this).attr('name').split('_');
+
+          // 삭제가 아닌 경우 버튼명과 name속성을 완료, buttonName[0]_C_buttonName[1]로 변경
+          if (buttonName[1] != 'D') {
+            $(this).html('완료');
+            $(this).attr('name', buttonName[0] + '_C_' + buttonName[1]);
+          }
+
+          // 추가버튼 클릭 시
+          if (buttonName[1] == 'A') {
+            $(this).parent().parent().find('div input').each(function (index, item) {
+              $(item).removeAttr('style');
+              $(item).attr('style', 'border:1px solid gray; margin:1px')
+            });
+          }
+          // 수정버튼 클릭 시
+          else if (buttonName[1] == 'U') {
+
+            var tagName = 'div';
+            if (buttonName[0] == 'fun') {
+              tagName = 'span'
+            }
+            // input box 활성화
+            $(this).parent().parent().find(tagName + ' input').each(function (index, item) {
+              $(item).attr('style', 'border:1px solid gray; margin:1px');
+              $(item).removeAttr('readonly');
+            });
+          }
+          // 삭제버튼 클릭 시
+          else if (buttonName[1] == 'D') {
+
+          }
+          // 완료버튼 클릭 시
+          else if (buttonName[1] == 'C') {
+
+            var tagName = 'div';
+            if (buttonName[0] == 'fun') {
+              tagName = 'span'
+            }
+
+            var btnName = '수정';
+            if (buttonName[2] == 'A') {
+              btnName = '추가';
+              // input box display:none
+              $(this).parent().parent().find('div input').each(function (index, item) {
+                $(item).attr('style', 'display:none');
+              });
+            }
+            else {
+              // input box 비활성화
+              $(this).parent().parent().find(tagName + ' input').each(function (index, item) {
+                $(item).attr('style', 'border:0;');
+                $(item).attr('readonly', 'readonly');
+              });
+            }
+            // 버튼명 추가 or 수정으로 다시 변경
+            $(this).html(btnName);
+            $(this).attr('name', buttonName[0] + '_' + buttonName[2]);
+          }
+        });
+      });
 
   body
     nav(class='navbar navbar-default navbar-fixed-top')
