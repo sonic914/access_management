@@ -17,26 +17,26 @@ block content
                 - for (var i = 0; i< data.length; i++)
                     tr
                         td(style='display:none;')= data[i].id
-                        td(class=data[i].programName, group='program')
+                        td
                             div(style='float: right;')
                                 button(name='prg_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
                                 button(name='prg_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                            div: input(name='prgName', type='text', value=data[i].programName, style='border:0;', readonly='readOnly')
-                            div: input(name='prgExp', type='text', value=data[i].programExp, style='border:0;', readonly='readOnly')
-                        td(class=data[i].formName)
+                            div: input(name='prgName', type='text', value=data[i].programName, class='form-control', readonly='readOnly')
+                            div: input(name='prgExp', type='text', value=data[i].programExp, class='form-control', readonly='readOnly')
+                        td
                             div(style='float: right;')
                                 button(name='form_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
                                 button(name='form_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                            div: input(name='formName', type='text', value=data[i].formName, style='border:0;', readonly='readOnly')
-                            div: input(name='formExp', type='text', value=data[i].formExp, style='border:0;', readonly='readOnly')
+                            div: input(name='formName', type='text', value=data[i].formName, class='form-control', readonly='readOnly')
+                            div: input(name='formExp', type='text', value=data[i].formExp, class='form-control', readonly='readOnly')
                         td
                             ul(class='list-unstyled')
                                 li(style='margin-bottom: 3px; clear: both;')
-                                    span: input(name='funName', type='text', value= data[i].funName, style='border:0;', readonly='readOnly')
-                                    span: input(name='funExp', type='text', value= data[i].funExp, style='border:0;', readonly='readOnly')
                                     span(style='float: right;')
                                         button(name='fun_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
                                         button(name='fun_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px; clear: both;') 삭제
+                                    span: input(name='funName', type='text', value= data[i].funName, class='form-control', readonly='readOnly')
+                                    span: input(name='funExp', type='text', value= data[i].funExp, class='form-control', readonly='readOnly')
 
                     if (i != data.length -1)
                         - var equalProgram = Boolean(data[i].programName != data[i+1].programName);
@@ -44,38 +44,58 @@ block content
                         if equalForm
                             tr
                                 td(style='display:none;')
-                                td(class=data[i].programName, group='program')
-                                td(class=data[i].formName)
+                                td
+                                    div(style='float: right;')
+                                        button(name='prg_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                        button(name='prg_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                                    div: input(name='prgName', type='text', value=data[i].programName, class='form-control', readonly='readOnly')
+                                    div: input(name='prgExp', type='text', value=data[i].programExp, class='form-control', readonly='readOnly')
+                                td
+                                    div(style='float: right;')
+                                        button(name='form_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                        button(name='form_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                                    div: input(name='formName', type='text', value=data[i].formName, class='form-control', readonly='readOnly')
+                                    div: input(name='formExp', type='text', value=data[i].formExp, class='form-control', readonly='readOnly')
                                 td
                                     div: button(name='fun_A', type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
-                                    div: input(name='funName', type='text', value='', style='display:none;')
-                                    div: input(name='funExp', type='text', value='', style='display:none;')
+                                    div: input(name='funName', type='text', value='', class='form-control', style='display:none;')
+                                    div: input(name='funExp', type='text', value='', class='form-control', style='display:none;')
                         if equalProgram
                             tr
                                 td(style='display:none;')
-                                td(class=data[i].programName, group='program')
-                                td(class=data[i].formName)
+                                td
+                                    div(style='float: right;')
+                                        button(name='prg_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                        button(name='prg_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                                    div: input(name='prgName', type='text', value=data[i].programName, class='form-control', readonly='readOnly')
+                                    div: input(name='prgExp', type='text', value=data[i].programExp, class='form-control', readonly='readOnly')
+                                td
                                     div: button(name='form_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
-                                    div: input(name='formName', type='text', value='', style='display:none;')
-                                    div: input(name='formExp', type='text', value='', style='display:none;')
+                                    div: input(name='formName', type='text', value='', class='form-control', style='display:none;')
+                                    div: input(name='formExp', type='text', value='', class='form-control', style='display:none;')
                                 td
                     else
                         tr
                             td(style='display:none;')
-                            td(class=data[i].programName, group='program')
-                            td(class=data[i].formName)
+                            td
+                                div(style='float: right;')
+                                    button(name='prg_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
+                                    button(name='prg_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
+                                div: input(name='prgName', type='text', value=data[i].programName, class='form-control', readonly='readOnly')
+                                div: input(name='prgExp', type='text', value=data[i].programExp, class='form-control', readonly='readOnly')
+                            td
                                 div: button(name='form_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
-                                div: input(name='formName', type='text', value='', style='display:none;')
-                                div: input(name='formExp', type='text', value='', style='display:none;')
+                                div: input(name='formName', type='text', value='', class='form-control', style='display:none;')
+                                div: input(name='formExp', type='text', value='', class='form-control', style='display:none;')
                             td
                                 div: button(name='fun_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
-                                div: input(name='funName', type='text', value='', style='display:none;')
-                                div: input(name='funExp', type='text', value='', style='display:none;')
+                                div: input(name='funName', type='text', value='', class='form-control', style='display:none;')
+                                div: input(name='funExp', type='text', value='', class='form-control', style='display:none;')
                         tr
                             td(style='display:none;')
-                            td(class=data[i].programName, group='program')
+                            td
                                 div: button(name='prg_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
                                 div: input(name='prgName', type='text', value='', style='display:none;')
                                 div: input(name='prgExp', type='text', value='', style='display:none;')
-                            td(class=data[i].formName)
+                            td
                             td
