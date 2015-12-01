@@ -13,7 +13,6 @@ block content
                         th(style='width: 25%;') 폼
                         th(style='width: 45%;') 기능
                 tbody
-                - var data =[{id:1, programName:'pro1', programExp:'pro1입니다', formName:'form1', formExp:'form1입니다', funName:'fun1', funExp:'fun1'}, {id:2, programName:'pro1', programExp:'pro1입니다', formName:'form1', formExp:'form1입니다', funName:'fun2', funExp:'fun2'}, {id:3, programName:'pro1', programExp:'pro1입니다', formName:'form2', formExp:'form2입니다', funName:'fun3', funExp:'fun3'}, {id:4, programName:'pro2', programExp:'pro2입니다', formName:'form3', formExp:'form3입니다', funName:'fun4', funExp:'fun4'}, {id:5, programName:'pro2', programExp:'pro2입니다', formName:'form3', formExp:'form3입니다', funName:'fun5', funExp:'fun5'}, {id:6, programName:'pro3', programExp:'pro3입니다', formName:'form4', formExp:'form4입니다', funName:'fun6', funExp:'fun6'}, {id:7, programName:'pro3', programExp:'pro3입니다', formName:'form5', formExp:'form5입니다', funName:'fun7', funExp:'fun7'}, {id:8, programName:'pro4', programExp:'pro4입니다', formName:'form6', formExp:'form6입니다', funName:'fun8', funExp:'fun8'}]
                 - for (var i = 0; i< data.length; i++)
                     tr
                         td(style='display:none;')= data[i].id
