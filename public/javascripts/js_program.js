@@ -22,7 +22,6 @@ $(document).ready(function () {
         if (buttonName[1] == 'A') {
             $(this).parent().parent().find('div input').each(function (index, item) {
                 $(item).removeAttr('style');
-                //$(item).attr('style', 'border:1px solid gray; margin:1px')
             });
         }
         // 수정버튼 클릭 시
@@ -41,41 +40,62 @@ $(document).ready(function () {
         else if (buttonName[1] == 'D') {
 
         }
-        // 완료버튼 클릭 시
+        // 완료버튼 클릭 시(추가 -> 완료, 수정 -> 완료)
         else if (buttonName[1] == 'C') {
 
+            var data = {};
             var tagName = 'div';
-            var inputName = '';
-            var inputExp = '';
+            var thisObj = $(this);
 
             if(buttonName[0] == 'prg'){
-                inputName = 'prgName';
-                inputExp = 'prgExp';
+                data.prgName = $(this).parent().parent().find('div input[name="prgName"]').val();
+                data.prgExp = $(this).parent().parent().find('div input[name="prgExp"]').val();
+
+                if(buttonName[2] == 'U'){
+                    data.id = $(this).parent().parent().parent().find('td span input[name="id"]').val();
+                }
+                checkInput(data.prgName);
             }
             else if(buttonName[0] == 'form'){
-                inputName = 'prgName';
-                inputExp = 'prgExp';
+                if(buttonName[2] == 'A'){
+                    data.prgName = $(this).parent().parent().parent().find('td div input[name="prgName"]').val();
+                    data.prgExp = $(this).parent().parent().parent().find('td div input[name="prgExp"]').val();
+                }
+                data.formName = $(this).parent().parent().find('div input[name="formName"]').val();
+                data.formExp = $(this).parent().parent().find('div input[name="formExp"]').val();
+
+                if(buttonName[2] == 'U'){
+                    data.id = $(this).parent().parent().parent().find('td span input[name="id"]').val();
+                }
+                checkInput(data.formName);
             }
             else if (buttonName[0] == 'fun') {
-                tagName = 'span';
-                inputName = 'prgName';
-                inputExp = 'prgExp';
+                var tagName = 'span';
+
+                if(buttonName[2] == 'A'){
+                    data.prgName = $(this).parent().parent().parent().find('td div input[name="prgName"]').val();
+                    data.prgExp = $(this).parent().parent().parent().find('td div input[name="prgExp"]').val();
+                    data.formName = $(this).parent().parent().find('td div input[name="formName"]').val();
+                    data.formExp = $(this).parent().parent().find('td div input[name="formExp"]').val();
+                }
+                data.funName = $(this).parent().parent().find('span input[name="funName"]').val();
+                data.funExp = $(this).parent().parent().find('span input[name="funExp"]').val();
+
+                if(buttonName[2] == 'U'){
+                    data.id = $(this).parent().parent().find('span input[name="id"]').val();
+                }
+                checkInput(data.funName);
             }
 
-            var name = $(this).parent().parent().find(tagName + ' input[name="' + inputName + '"]').val();
-            var exp = $(this).parent().parent().find(tagName + ' input[name="' + inputName + '"]').val();
-
-            if(name == ''){
-                alert('추가 할 내용을 입력하세요.');
-                return false;
-            }
+            data.mode = buttonName[2];
+            data.gbn = buttonName[0];
 
             $.ajax({
-                url: '/program/add',
+                url: '/program/edit',
                 type: 'post',
-                data: {name: name, exp: exp, mode: buttonName[2], gbn: buttonName[0]},
+                data: data,
                 success: function (data) {
-                    var btnName = '수정';
+                    console.log('success');
                     if (buttonName[2] == 'A') {
                         //btnName = '추가';
                         // input box display:none
@@ -85,17 +105,25 @@ $(document).ready(function () {
                         location.reload();
                     }
                     else {
+                        console.log('else');
                         // input box 비활성화
-                        $(this).parent().parent().find(tagName + ' input').each(function (index, item) {
+                        $(thisObj).parent().parent().find(tagName + ' input').each(function (index, item) {
                             $(item).attr('readonly', 'readonly');
                         });
-                    }
 
-                    // 버튼명 추가 or 수정으로 다시 변경
-                    $(this).html(btnName);
-                    $(this).attr('name', buttonName[0] + '_' + buttonName[2]);
+                        // 버튼명 추가 or 수정으로 다시 변경
+                        $(thisObj).html('수정');
+                        $(thisObj).attr('name', buttonName[0] + '_' + buttonName[2]);
+                    }
                 }
             });
         }
     });
+
+    function checkInput(name){
+        if(name == ''){
+            alert('추가 할 내용을 입력하세요.');
+            return false;
+        }
+    }
 });

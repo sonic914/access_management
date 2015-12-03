@@ -36,6 +36,7 @@ block content
                                         button(name='fun_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px; clear: both;') 삭제
                                     span: input(name='funName', type='text', value= data[i].funName, class='form-control', readonly='readOnly')
                                     span: input(name='funExp', type='text', value= data[i].funExp, class='form-control', readonly='readOnly')
+                                    span: input(name='id', type='hidden', value=data[i].id)
 
                     if (i != data.length -1)
                         - var equalProgram = Boolean(data[i].programName != data[i+1].programName);

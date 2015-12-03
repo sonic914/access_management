@@ -17,21 +17,43 @@ router.get('/', function (req, res, next) {
     res.render('program', { title: 'Express' , data: data });
 });
 
-router.post('/add', function(req, res, next){
-    var name = req.body.name;
-    var exp = req.body.exp;
-    var mode = req.body.mode;
-    var gbn = req.body.gbn;
+router.post('/edit', function(req, res, next){
+    var inputData = req.body;
 
-    if(mode == 'A'){
-        if(gbn == 'prg'){
-            data.push({'id':data.length+1, 'programName': name, 'programExp': exp});
+    if(inputData.mode == 'A'){
+        if(inputData.gbn == 'prg'){
+            data.push({'id':data.length+1, 'programName': inputData.prgName, 'programExp': inputData.prgExp});
         }
-        else if(gbn == 'form'){
-            data[1].push({'id':'2', 'formName': name, 'formExp': exp});
+        else if(inputData.gbn == 'form'){
+            data.push({
+                'id':data.length+1,
+                'programName': inputData.prgName,
+                'programExp': inputData.prgExp,
+                'formName': inputData.formName,
+                'formExp': inputData.formExp
+            });
         }
-        else if(gbn == 'fun'){
-            data[1].push({'id':'2', 'funName': name, 'funExp': exp});
+        else if(inputData.gbn == 'fun'){
+            data.push({
+                'id':data.length+1,
+                'programName': inputData.prgName,
+                'programExp': inputData.prgExp,
+                'formName': inputData.formName,
+                'formExp': inputData.formExp,
+                'funName': inputData.funName,
+                'funExp': inputData.funExp
+            });
+        }
+    }
+    else if(inputData.mode == 'U'){
+        if(inputData.gbn == 'prg'){
+
+        }
+        else if(inputData.gbn == 'form'){
+
+        }
+        else if(inputData.gbn == 'fun'){
+
         }
     }
     res.render('program', {title:'Edddd', data:data });
