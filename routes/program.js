@@ -32,16 +32,18 @@ router.get('/', function (req, res, next) {
     sql.connect(config, function(err){
         var request = new sql.Request();
         request.stream = true;
-        request.query('select * from prg_mng');
+
+        var queryStr = 'select * from prg_mng order by pm_prg_name, pm_form_name, pm_fun_name';
+        request.query(queryStr);
 
         request.on('row', function(row){
-            console.log(row.pm_id);
             data.push({'pm_id':row.pm_id, 'pm_prg_name':row.pm_prg_name, 'pm_prg_exp':row.pm_prg_exp, 'pm_form_name':row.pm_form_name, 'pm_form_exp':row.pm_form_exp, 'pm_fun_name':row.pm_fun_name, 'pm_fun_exp':row.pm_fun_exp});
         });
 
+
         /*request.on('recordset', function(columns){
             console.log('----------------recordset-----------------');
-            console.dir(columns[1][1].prg_id);
+            console.dir(columns);
         });
         */
 
@@ -54,15 +56,20 @@ router.get('/', function (req, res, next) {
             console.log(data);
             res.render('program', { title: 'Express' , data: data });
         });
+
+        sql.close();
     });
 });
 
 router.post('/edit', function(req, res, next){
     var inputData = req.body;
+    var queryStr = 'insert into prg_mng ';
 
     if(inputData.mode == 'A'){
         if(inputData.gbn == 'prg'){
             data.push({'id':data.length+1, 'programName': inputData.prgName, 'programExp': inputData.prgExp});
+            queryStr += '(pm_prg_name, pm_prg_exp, pm_upt_dt, pm_upt_id) ';
+            queryStr += 'values(inputData.prgName, inputData.prgExp, getDate(), "hyelim")';
         }
         else if(inputData.gbn == 'form'){
             data.push({
@@ -96,6 +103,36 @@ router.post('/edit', function(req, res, next){
 
         }
     }
+
+    var transaction = new sql.Transaction(/* [connection] */);
+    transaction.begin(function(err) {
+        // ... error checks
+
+        var rolledBack = false;
+
+        transaction.on('rollback', function(aborted) {
+            // emited with aborted === true
+
+            rolledBack = true;
+        });
+
+        var request = new sql.Request(transaction);
+        request.query(queryStr, function(err, recordset) {
+            // insert should fail because of invalid value
+
+            if (err) {
+                if (!rolledBack) {
+                    transaction.rollback(function(err) {
+                        // ... error checks
+                    });
+                }
+            } else {
+                transaction.commit(function(err) {
+                    // ... error checks
+                });
+            }
+        });
+    });
     res.render('program', {title:'Edddd', data:data });
 });
 module.exports = router;
