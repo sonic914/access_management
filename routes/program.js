@@ -14,22 +14,10 @@ var config = {
     }
 }
 
-/*var data = [
-        {id:1, programName:'pro1', programExp:'pro1입니다', formName:'form1', formExp:'form1입니다', funName:'fun1', funExp:'fun1입니다'},
-        {id:2, programName:'pro1', programExp:'pro1입니다', formName:'form1', formExp:'form1입니다', funName:'fun2', funExp:'fun2입니다'},
-        {id:3, programName:'pro1', programExp:'pro1입니다', formName:'form2', formExp:'form2입니다', funName:'fun3', funExp:'fun3입니다'},
-        {id:4, programName:'pro2', programExp:'pro2입니다', formName:'form3', formExp:'form3입니다', funName:'fun4', funExp:'fun4입니다'},
-        {id:5, programName:'pro2', programExp:'pro2입니다', formName:'form3', formExp:'form3입니다', funName:'fun5', funExp:'fun5입니다'},
-        {id:6, programName:'pro3', programExp:'pro3입니다', formName:'form4', formExp:'form4입니다', funName:'fun6', funExp:'fun6입니다'},
-        {id:7, programName:'pro3', programExp:'pro3입니다', formName:'form5', formExp:'form5입니다', funName:'fun7', funExp:'fun7입니다'},
-        {id:8, programName:'pro4', programExp:'pro4입니다', formName:'form6', formExp:'form6입니다', funName:'fun8', funExp:'fun8입니다'}
-    ];
-*/
-var data = [];
-
 /* GET users listing. */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
     sql.connect(config, function(err){
+        var data = [];
         var request = new sql.Request();
         request.stream = true;
 
@@ -53,45 +41,75 @@ router.get('/', function (req, res, next) {
         });
 
         request.on('done', function(returnValue){
-            console.log(data);
             res.render('program', { title: 'Express' , data: data });
         });
 
-        sql.close();
+        //sql.close();
     });
 });
 
-router.post('/edit', function(req, res, next){
+router.post('/edit', function(req, res){
     var inputData = req.body;
-    var queryStr = 'insert into prg_mng ';
-
+    var queryStr = '';
+console.log(inputData);
+    // 추가
     if(inputData.mode == 'A'){
         if(inputData.gbn == 'prg'){
-            data.push({'id':data.length+1, 'programName': inputData.prgName, 'programExp': inputData.prgExp});
+            queryStr = 'insert into prg_mng ';
             queryStr += '(pm_prg_name, pm_prg_exp, pm_upt_dt, pm_upt_id) ';
-            queryStr += 'values(inputData.prgName, inputData.prgExp, getDate(), "hyelim")';
+            // ###### hyelim -> 로그인한 id로 변경
+            queryStr += 'values (\'' + inputData.prgName + '\', \'' + inputData.prgExp + '\', getDate(), \'hyelim\')';
         }
         else if(inputData.gbn == 'form'){
-            data.push({
-                'id':data.length+1,
-                'programName': inputData.prgName,
-                'programExp': inputData.prgExp,
-                'formName': inputData.formName,
-                'formExp': inputData.formExp
-            });
+            // form과 function은 추가 시 두가지 경우가 있음
+            // id가 있는 경우 : 프로그램만 등록 되어 있는 경우 -> update
+            // id가 없는 경우  -> insert
+
+            if(inputData.id == undefined){
+                // id가 없는 경우
+                queryStr = 'insert into prg_mng ';
+                queryStr += '(pm_prg_name, pm_prg_exp, pm_form_name, pm_form_exp, pm_upt_dt, pm_upt_id) ';
+                // ###### hyelim -> 로그인한 id로 변경
+                queryStr += 'values (\'' + inputData.prgName + '\', \'' + inputData.prgExp + '\', \'' + inputData.formName + '\', \'' + inputData.formExp + '\', getDate(), \'hyelim\')';
+
+            } else{
+                // id가 있는 경우
+                queryStr = 'update prg_mng set ';
+                queryStr += 'pm_prg_name = \'' + inputData.prgName + '\', ';
+                queryStr += 'pm_prg_exp = \'' + inputData.prgExp + '\', ';
+                queryStr += 'pm_form_name = \'' + inputData.formName + '\', ';
+                queryStr += 'pm_form_exp = \'' + inputData.formExp + '\', ';
+                queryStr += 'pm_upt_dt = getDate(), ';
+                queryStr += 'pm_upt_id = \'hyelim\' ';
+                queryStr += 'where pm_id = ' + inputData.id;
+            }
         }
         else if(inputData.gbn == 'fun'){
-            data.push({
-                'id':data.length+1,
-                'programName': inputData.prgName,
-                'programExp': inputData.prgExp,
-                'formName': inputData.formName,
-                'formExp': inputData.formExp,
-                'funName': inputData.funName,
-                'funExp': inputData.funExp
-            });
+            if(inputData.id == undefined){
+                // id가 없는 경우
+                queryStr = 'insert into prg_mng ';
+                queryStr += '(pm_prg_name, pm_prg_exp, pm_form_name, pm_form_exp, pm_fun_name, pm_fun_exp, pm_upt_dt, pm_upt_id) ';
+                // ###### hyelim -> 로그인한 id로 변경
+                queryStr += 'values (\'' + inputData.prgName + '\', \'' + inputData.prgExp + '\', \''
+                    + inputData.formName + '\', \'' + inputData.formExp + '\', \''
+                    + inputData.funName + '\', \'' + inputData.funExp + '\', getDate(), \'hyelim\')';
+
+            } else {
+                // id가 있는 경우
+                queryStr = 'update prg_mng set ';
+                queryStr += 'pm_prg_name = \'' + inputData.prgName + '\', ';
+                queryStr += 'pm_prg_exp = \'' + inputData.prgExp + '\', ';
+                queryStr += 'pm_form_name = \'' + inputData.formName + '\', ';
+                queryStr += 'pm_form_exp = \'' + inputData.formExp + '\', ';
+                queryStr += 'pm_fun_name = \'' + inputData.funName + '\', ';
+                queryStr += 'pm_fun_exp = \'' + inputData.funExp + '\', ';
+                queryStr += 'pm_upt_dt = getDate(), ';
+                queryStr += 'pm_upt_id = \'hyelim\' ';
+                queryStr += 'where pm_id = ' + inputData.id;
+            }
         }
     }
+    // 수정
     else if(inputData.mode == 'U'){
         if(inputData.gbn == 'prg'){
 
@@ -104,35 +122,43 @@ router.post('/edit', function(req, res, next){
         }
     }
 
-    var transaction = new sql.Transaction(/* [connection] */);
-    transaction.begin(function(err) {
-        // ... error checks
+    sql.connect(config, function(err) {
+        //var data = [];
+        var request = new sql.Request();
+        request.stream = true;
 
-        var rolledBack = false;
+        console.log('queryStr :: ' + queryStr);
+        request.query(queryStr);
+        console.log('dddddddd@@@@@@@@@@@@@@@@@');
 
-        transaction.on('rollback', function(aborted) {
-            // emited with aborted === true
 
-            rolledBack = true;
+        //var request = new sql.Request();
+        //var queryStr = 'select * from prg_mng order by pm_prg_name, pm_form_name, pm_fun_name';
+        //request.query(queryStr);
+
+        //request.on('row', function(row){
+            //data.push({'pm_id':row.pm_id, 'pm_prg_name':row.pm_prg_name, 'pm_prg_exp':row.pm_prg_exp, 'pm_form_name':row.pm_form_name, 'pm_form_exp':row.pm_form_exp, 'pm_fun_name':row.pm_fun_name, 'pm_fun_exp':row.pm_fun_exp});
+        //});
+
+
+        /*request.on('recordset', function(columns){
+         console.log('----------------recordset-----------------');
+         console.dir(columns);
+         });
+         */
+
+        request.on('error', function (err) {
+            console.log('----------------error_post-----------------');
+            console.log(err);
         });
 
-        var request = new sql.Request(transaction);
-        request.query(queryStr, function(err, recordset) {
-            // insert should fail because of invalid value
-
-            if (err) {
-                if (!rolledBack) {
-                    transaction.rollback(function(err) {
-                        // ... error checks
-                    });
-                }
-            } else {
-                transaction.commit(function(err) {
-                    // ... error checks
-                });
-            }
+        request.on('done', function (returnValue) {
+            res.send({message:'success'});
+            //res.render('program', {title: 'Express', message: 'success'});
         });
+
+        //sql.close();
     });
-    res.render('program', {title:'Edddd', data:data });
 });
+
 module.exports = router;

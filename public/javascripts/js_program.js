@@ -6,11 +6,17 @@ $(document).ready(function () {
     // 프로그램관리 테이블 병합 1: 프로그램, 2: 폼
     $('#programListTable').rowspan(1);
     $('#programListTable').rowspan(2);
+    $('#programListTable').rowspan(3);
 
     // 버튼 클릭 이벤트
     $('button').click(function () {
         var buttonName = '';
         buttonName = $(this).attr('name').split('_');
+
+        var tagName = 'div';
+        if (buttonName[0] == 'fun') {
+            tagName = 'span'
+        }
 
         // 삭제가 아닌 경우 버튼명과 name 속성을 완료, buttonName[0]_C_buttonName[1]로 변경
         if (buttonName[1] != 'D') {
@@ -20,17 +26,13 @@ $(document).ready(function () {
 
         // 추가버튼 클릭 시
         if (buttonName[1] == 'A') {
-            $(this).parent().parent().find('div input').each(function (index, item) {
+            $(this).parent().parent().find(tagName + ' input').each(function (index, item) {
                 $(item).removeAttr('style');
             });
         }
         // 수정버튼 클릭 시
         else if (buttonName[1] == 'U') {
 
-            var tagName = 'div';
-            if (buttonName[0] == 'fun') {
-                tagName = 'span'
-            }
             // input box 활성화
             $(this).parent().parent().find(tagName + ' input').each(function (index, item) {
                 $(item).removeAttr('readonly');
@@ -40,7 +42,7 @@ $(document).ready(function () {
         else if (buttonName[1] == 'D') {
 
         }
-        // 완료버튼 클릭 시(추가 -> 완료, 수정 -> 완료)
+        // 완료버튼 클릭 시(완료 -> 추가/수정)
         else if (buttonName[1] == 'C') {
 
             var data = {};
@@ -64,26 +66,28 @@ $(document).ready(function () {
                 data.formName = $(this).parent().parent().find('div input[name="formName"]').val();
                 data.formExp = $(this).parent().parent().find('div input[name="formExp"]').val();
 
-                if(buttonName[2] == 'U'){
-                    data.id = $(this).parent().parent().parent().find('td span input[name="id"]').val();
-                }
+                debugger;
+                //if(buttonName[2] == 'U'){
+                data.id = $(this).parent().parent().parent().find('td ul li span input[name="id"]').val();
+                //}
                 checkInput(data.formName);
             }
             else if (buttonName[0] == 'fun') {
                 var tagName = 'span';
 
                 if(buttonName[2] == 'A'){
-                    data.prgName = $(this).parent().parent().parent().find('td div input[name="prgName"]').val();
-                    data.prgExp = $(this).parent().parent().parent().find('td div input[name="prgExp"]').val();
-                    data.formName = $(this).parent().parent().find('td div input[name="formName"]').val();
-                    data.formExp = $(this).parent().parent().find('td div input[name="formExp"]').val();
+                    data.prgName = $(this).parent().parent().parent().parent().parent().find('td div input[name="prgName"]').val();
+                    data.prgExp = $(this).parent().parent().parent().parent().parent().find('td div input[name="prgExp"]').val();
+                    data.formName = $(this).parent().parent().parent().parent().parent().find('td div input[name="formName"]').val();
+                    data.formExp = $(this).parent().parent().parent().parent().parent().find('td div input[name="formExp"]').val();
                 }
+                debugger;
                 data.funName = $(this).parent().parent().find('span input[name="funName"]').val();
                 data.funExp = $(this).parent().parent().find('span input[name="funExp"]').val();
 
-                if(buttonName[2] == 'U'){
-                    data.id = $(this).parent().parent().find('span input[name="id"]').val();
-                }
+                //if(buttonName[2] == 'U'){
+                data.id = $(this).parent().parent().find('span input[name="id"]').val();
+                //}
                 checkInput(data.funName);
             }
 
@@ -102,6 +106,7 @@ $(document).ready(function () {
                         //$(this).parent().parent().find('div input').each(function (index, item) {
                             //$(item).attr('style', 'display:none');
                         //});
+                        debugger;
                         location.reload();
                     }
                     else {
