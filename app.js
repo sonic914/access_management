@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
@@ -12,6 +13,7 @@ var program = require('./routes/program');
 var group = require('./routes/group');
 var forbidden = require('./routes/forbidden');
 var exception = require('./routes/exception');
+
 var app = express();
 
 // view engine setup
@@ -27,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/auth', auth);
+app.use ('/auth', auth);
 app.use('/program', program);
 app.use('/users', users);
 app.use('/group', group);

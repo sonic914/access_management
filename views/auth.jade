@@ -12,8 +12,8 @@ html
         div(class='container')
             form(class='form-signin', method='post')
                 h3(class='form-signin-heading') 권한관리프로그램
-                label(for='inputEmail', class='sr-only') ID
-                input(type='text', id='inputID', class='form-control', placeholder='ID', required, autofocus)
+                label(for='inputID', class='sr-only') ID
+                input(type='text', name='inputID', id='inputID', class='form-control', placeholder='ID', required, autofocus)
                 label(for='inputPassword' class='sr-only') Password
-                input(type='password' id='inputPassword', class='form-control', placeholder='Password', required)
+                input(type='password' name='inputPassword' id='inputPassword', class='form-control', placeholder='Password', required)
                 button(class='btn btn-lg btn-primary btn-block', type='submit') Sign in
