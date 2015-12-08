@@ -39,7 +39,7 @@ block content
                                     span: input(name='id', type='hidden', value=data[i].pm_id)
 
                     if (i != data.length -1)
-                        - var notEqualProgram = Boolean(data[i].pm_prg_name != data[i+1].pm_prg_Name);
+                        - var notEqualProgram = Boolean(data[i].pm_prg_name != data[i+1].pm_prg_name);
                         - var notEqualForm = Boolean(data[i].pm_form_name != data[i+1].pm_form_name);
                         if notEqualForm
                             tr
@@ -81,8 +81,8 @@ block content
                                 div(style='float: right;')
                                     button(name='prg_U', type='button', class='btn btn-xs btn-warning', style='margin-left : 5px;') 수정
                                     button(name='prg_D', type='button', class='btn btn-xs btn-danger', style='margin-left : 5px;') 삭제
-                                div: input(name='prgName', type='text', value=data[i].prg_name, class='form-control', readonly='readOnly')
-                                div: input(name='prgExp', type='text', value=data[i].prg_exp, class='form-control', readonly='readOnly')
+                                div: input(name='prgName', type='text', value=data[i].pm_prg_name, class='form-control', readonly='readOnly')
+                                div: input(name='prgExp', type='text', value=data[i].pm_prg_exp, class='form-control', readonly='readOnly')
                             td
                                 div: button(name='form_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
                                 div: input(name='formName', type='text', value='', class='form-control', style='display:none;')
