@@ -3,7 +3,7 @@
  */
 $(document).ready(function () {
 
-    // 프로그램관리 테이블 병합 1: 프로그램, 2: 폼
+    // 프로그램관리 테이블 병합 1: 프로그램, 2: 폼, 3: 기능(펑션)
     $('#programListTable').rowspan(1);
     $('#programListTable').rowspan(2);
     $('#programListTable').rowspan(3);
@@ -26,6 +26,7 @@ $(document).ready(function () {
 
         // 추가버튼 클릭 시
         if (buttonName[1] == 'A') {
+            // style='display:none;' 삭제
             $(this).parent().parent().find(tagName + ' input').each(function (index, item) {
                 $(item).removeAttr('style');
             });
@@ -37,16 +38,20 @@ $(document).ready(function () {
             $(this).parent().parent().find(tagName + ' input').each(function (index, item) {
                 $(item).removeAttr('readonly');
             });
-        }
-        // 삭제버튼 클릭 시
-        else if (buttonName[1] == 'D') {
+
+            // 기존의 이름과 설명 저장하기(쿼리 조건문으로 사용)
+            $(this).parent().parent().find(tagName + ' input').each(function (index, item) {
+                $(item).attr('oldValue' + index, item.value);
+            });
 
         }
-        // 완료버튼 클릭 시(완료 -> 추가/수정)
-        else if (buttonName[1] == 'C') {
+        // 삭제버튼 클릭 시 or 완료버튼 클릭 시(완료 -> 추가/수정)
+        else if (buttonName[1] == 'D' || buttonName[1] == 'C') {
 
             var data = {};
             var tagName = 'div';
+
+            // ajax 통신 후 변경내용 반영하기 위해 변수 선언
             var thisObj = $(this);
 
             if(buttonName[0] == 'prg'){
@@ -55,6 +60,8 @@ $(document).ready(function () {
 
                 if(buttonName[2] == 'U'){
                     data.id = $(this).parent().parent().parent().find('td span input[name="id"]').val();
+                    data.oldName = $(this).parent().parent().find('div input[name="prgName"]').attr('oldValue0');
+                    data.oldExp = $(this).parent().parent().find('div input[name="prgExp"]').attr('oldValue1');
                 }
                 checkInput(data.prgName);
             }
@@ -63,13 +70,14 @@ $(document).ready(function () {
                     data.prgName = $(this).parent().parent().parent().find('td div input[name="prgName"]').val();
                     data.prgExp = $(this).parent().parent().parent().find('td div input[name="prgExp"]').val();
                 }
+                else if(buttonName[2] == 'U'){
+                    data.oldName = $(this).parent().parent().find('div input[name="formName"]').attr('oldValue0');
+                    data.oldExp = $(this).parent().parent().find('div input[name="formExp"]').attr('oldValue1');
+                }
+
                 data.formName = $(this).parent().parent().find('div input[name="formName"]').val();
                 data.formExp = $(this).parent().parent().find('div input[name="formExp"]').val();
-
-                debugger;
-                //if(buttonName[2] == 'U'){
                 data.id = $(this).parent().parent().parent().find('td ul li span input[name="id"]').val();
-                //}
                 checkInput(data.formName);
             }
             else if (buttonName[0] == 'fun') {
@@ -81,17 +89,23 @@ $(document).ready(function () {
                     data.formName = $(this).parent().parent().parent().parent().parent().find('td div input[name="formName"]').val();
                     data.formExp = $(this).parent().parent().parent().parent().parent().find('td div input[name="formExp"]').val();
                 }
-                debugger;
+                else if(buttonName[2] == 'U'){
+                    data.oldName = $(this).parent().parent().find('span input[name="funName"]').attr('oldValue0');
+                    data.oldExp = $(this).parent().parent().find('span input[name="funExp"]').attr('oldValue1');
+                }
+
                 data.funName = $(this).parent().parent().find('span input[name="funName"]').val();
                 data.funExp = $(this).parent().parent().find('span input[name="funExp"]').val();
-
-                //if(buttonName[2] == 'U'){
                 data.id = $(this).parent().parent().find('span input[name="id"]').val();
-                //}
                 checkInput(data.funName);
             }
+            // 삭제일 경우 mode는 buttonName[1]으로 설정
+            if(buttonName[1] == 'D'){
+                data.mode = buttonName[1];
+            }else{
+                data.mode = buttonName[2];
+            }
 
-            data.mode = buttonName[2];
             data.gbn = buttonName[0];
 
             $.ajax({
@@ -100,16 +114,7 @@ $(document).ready(function () {
                 data: data,
                 success: function (data) {
                     console.log('success');
-                    if (buttonName[2] == 'A') {
-                        //btnName = '추가';
-                        // input box display:none
-                        //$(this).parent().parent().find('div input').each(function (index, item) {
-                            //$(item).attr('style', 'display:none');
-                        //});
-                        debugger;
-                        location.reload();
-                    }
-                    else {
+                    if (buttonName[2] == 'U') {
                         console.log('else');
                         // input box 비활성화
                         $(thisObj).parent().parent().find(tagName + ' input').each(function (index, item) {
@@ -119,6 +124,9 @@ $(document).ready(function () {
                         // 버튼명 추가 or 수정으로 다시 변경
                         $(thisObj).html('수정');
                         $(thisObj).attr('name', buttonName[0] + '_' + buttonName[2]);
+                    }
+                    else {
+                        location.reload();
                     }
                 }
             });

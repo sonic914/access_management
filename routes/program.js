@@ -21,7 +21,7 @@ router.get('/', function (req, res) {
         var request = new sql.Request();
         request.stream = true;
 
-        var queryStr = 'select * from prg_mng order by pm_prg_name, pm_form_name, pm_fun_name';
+        var queryStr = 'select * from prg_mng where pm_del_yn = \'N\' order by pm_prg_name, pm_form_name, pm_fun_name';
         request.query(queryStr);
 
         request.on('row', function(row){
@@ -112,13 +112,52 @@ console.log(inputData);
     // 수정
     else if(inputData.mode == 'U'){
         if(inputData.gbn == 'prg'){
-
+            queryStr = 'update prg_mng set ';
+            queryStr += 'pm_prg_name = \'' + inputData.prgName + '\', ';
+            queryStr += 'pm_prg_exp = \'' + inputData.prgExp + '\', ';
+            queryStr += 'pm_upt_dt = getDate(), ';
+            queryStr += 'pm_upt_id = \'hyelim\' ';
+            queryStr += 'where pm_prg_name = \'' + inputData.oldName + '\' ';
+            queryStr += 'and pm_prg_exp = \'' + inputData.oldExp + '\' ';
         }
         else if(inputData.gbn == 'form'){
-
+            queryStr = 'update prg_mng set ';
+            queryStr += 'pm_form_name = \'' + inputData.formName + '\', ';
+            queryStr += 'pm_form_exp = \'' + inputData.formExp + '\', ';
+            queryStr += 'pm_upt_dt = getDate(), ';
+            queryStr += 'pm_upt_id = \'hyelim\' ';
+            queryStr += 'where pm_form_name = \'' + inputData.oldName + '\' ';
+            queryStr += 'and pm_form_exp = \'' + inputData.oldExp + '\' ';
         }
         else if(inputData.gbn == 'fun'){
+            queryStr = 'update prg_mng set ';
+            queryStr += 'pm_fun_name = \'' + inputData.funName + '\', ';
+            queryStr += 'pm_fun_exp = \'' + inputData.funExp + '\', ';
+            queryStr += 'pm_upt_dt = getDate(), ';
+            queryStr += 'pm_upt_id = \'hyelim\' ';
+            queryStr += 'where pm_fun_name = \'' + inputData.oldName + '\' ';
+            queryStr += 'and pm_fun_exp = \'' + inputData.oldExp + '\' ';
+        }
+    }
 
+    // 삭제
+    else if(inputData.mode == 'D'){
+        queryStr = 'update prg_mng set ';
+        queryStr += 'pm_del_yn = \'Y\', ';
+        queryStr += 'pm_upt_dt = getDate(), ';
+        queryStr += 'pm_upt_id = \'hyelim\' ';
+
+        if(inputData.gbn == 'prg'){
+            queryStr += 'where pm_prg_name = \'' + inputData.prgName + '\' ';
+            queryStr += 'and pm_prg_exp = \'' + inputData.prgExp + '\' ';
+        }
+        else if(inputData.gbn == 'form'){
+            queryStr += 'where pm_form_name = \'' + inputData.formName + '\' ';
+            queryStr += 'and pm_form_exp = \'' + inputData.formExp + '\' ';
+        }
+        else if(inputData.gbn == 'fun'){
+            queryStr += 'where pm_fun_name = \'' + inputData.funName + '\' ';
+            queryStr += 'and pm_fun_exp = \'' + inputData.funExp + '\' ';
         }
     }
 
@@ -129,7 +168,6 @@ console.log(inputData);
 
         console.log('queryStr :: ' + queryStr);
         request.query(queryStr);
-        console.log('dddddddd@@@@@@@@@@@@@@@@@');
 
 
         //var request = new sql.Request();
@@ -150,6 +188,7 @@ console.log(inputData);
         request.on('error', function (err) {
             console.log('----------------error_post-----------------');
             console.log(err);
+            res.send({message:'fail'});
         });
 
         request.on('done', function (returnValue) {
