@@ -71,6 +71,13 @@ block content
                                                         span: input(name='funName', type='text', value= ' ', class='form-control', style='display:none;')
                                                         span: input(name='funExp', type='text', value= ' ', class='form-control', style='display:none;')
                                                         span: input(name='id', type='hidden', value=data[i].pm_id)
+                                    else
+                                        td
+                                            div: button(name='form_A',type='button', class='btn btn-xs btn-primary', style='margin-top: 3px;') 추가
+                                            div: input(name='formName', type='text', value=' ', class='form-control', style='display:none;')
+                                            div: input(name='formExp', type='text', value=' ', class='form-control', style='display:none;')
+                                        td
+
 
                                 if i > 0
                                     if notEqualForm

@@ -13,10 +13,20 @@ var config = {
         encrypt: true
     }
 }
-
 /* GET users listing. */
 router.get('/', function (req, res) {
     sql.connect(config, function(err){
+        var auth = req.cookies['auth'];
+        var btnLogin = "";
+        var linkLogin = "";
+
+        if (auth) {
+            btnLogin = '로그아웃';
+            linkLogin = '/logout';
+        } else {
+            res.redirect('/');
+        }
+
         var data = [];
         var request = new sql.Request();
         request.stream = true;
@@ -41,7 +51,7 @@ router.get('/', function (req, res) {
         });
 
         request.on('done', function(returnValue){
-            res.render('program', { title: 'Express' , data: data });
+            res.render('program', { title: 'Express' , data: data, link: linkLogin, btn: btnLogin });
         });
 
         //sql.close();
@@ -49,9 +59,19 @@ router.get('/', function (req, res) {
 });
 
 router.post('/edit', function(req, res){
+    var auth = req.cookies['auth'];
+    var btnLogin = "";
+    var linkLogin = "";
+
+    if (auth) {
+        btnLogin = '로그아웃';
+        linkLogin = '/logout';
+    } else {
+        res.redirect('/');
+    }
+
     var inputData = req.body;
     var queryStr = '';
-console.log(inputData);
     // 추가
     if(inputData.mode == 'A'){
         if(inputData.gbn == 'prg'){
@@ -192,7 +212,7 @@ console.log(inputData);
         });
 
         request.on('done', function (returnValue) {
-            res.send({message:'success'});
+            res.send({message:'success', link: linkLogin, btn: btnLogin});
             //res.render('program', {title: 'Express', message: 'success'});
         });
 
