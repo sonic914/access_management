@@ -13,6 +13,7 @@ var config = {
         encrypt: true
     }
 }
+
 /* GET users listing. */
 router.get('/', function (req, res) {
     sql.connect(config, function(err){
@@ -55,6 +56,7 @@ router.get('/', function (req, res) {
         });
 
         //sql.close();
+    //res.render('program', { title: 'Express' , data: data, link: linkLogin, btn: btnLogin });
     });
 });
 
@@ -208,7 +210,7 @@ router.post('/edit', function(req, res){
         request.on('error', function (err) {
             console.log('----------------error_post-----------------');
             console.log(err);
-            res.send({message:'fail'});
+            res.redirect('/');
         });
 
         request.on('done', function (returnValue) {

@@ -14,7 +14,6 @@ var config = {
   }
 }
 
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.clearCookie('auth','/');
