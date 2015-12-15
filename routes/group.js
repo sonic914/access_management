@@ -3,7 +3,8 @@ var mysql = require('mysql');
 var router = express.Router();
 
 var mysql_connection = mysql.createConnection({
-  host: '192.168.35.201',
+  //host: '192.168.35.201',
+  host:'hawaii402.ddns.net',
   user: 'hyelimirane',
   password: 'yayayaya1@'
 });

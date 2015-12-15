@@ -2,11 +2,12 @@ var express = require('express');
 var sql = require('mssql');
 var router = express.Router();
 
-// db info
+// mssql db info
 var config = {
     user: 'sa',
     password: '1q@',
-    server: '192.168.35.201',
+    //server: '192.168.35.201',
+    server: 'hawaii402.ddns.net',
     database: 'pam',
     stream: true,
     option: {
@@ -80,7 +81,7 @@ router.post('/edit', function(req, res){
             queryStr = 'insert into prg_mng ';
             queryStr += '(pm_prg_name, pm_prg_exp, pm_upt_dt, pm_upt_id) ';
             // ###### hyelim -> 로그인한 id로 변경
-            queryStr += 'values (\'' + inputData.prgName + '\', \'' + inputData.prgExp + '\', getDate(), \'hyelim\')';
+            queryStr += 'values (\'' + inputData.prgName + '\', \'' + inputData.prgExp + '\', getDate(), \'admin\')';
         }
         else if(inputData.gbn == 'form'){
             // form과 function은 추가 시 두가지 경우가 있음
@@ -92,7 +93,7 @@ router.post('/edit', function(req, res){
                 queryStr = 'insert into prg_mng ';
                 queryStr += '(pm_prg_name, pm_prg_exp, pm_form_name, pm_form_exp, pm_upt_dt, pm_upt_id) ';
                 // ###### hyelim -> 로그인한 id로 변경
-                queryStr += 'values (\'' + inputData.prgName + '\', \'' + inputData.prgExp + '\', \'' + inputData.formName + '\', \'' + inputData.formExp + '\', getDate(), \'hyelim\')';
+                queryStr += 'values (\'' + inputData.prgName + '\', \'' + inputData.prgExp + '\', \'' + inputData.formName + '\', \'' + inputData.formExp + '\', getDate(), \'admin\')';
 
             } else{
                 // id가 있는 경우
@@ -102,7 +103,7 @@ router.post('/edit', function(req, res){
                 queryStr += 'pm_form_name = \'' + inputData.formName + '\', ';
                 queryStr += 'pm_form_exp = \'' + inputData.formExp + '\', ';
                 queryStr += 'pm_upt_dt = getDate(), ';
-                queryStr += 'pm_upt_id = \'hyelim\' ';
+                queryStr += 'pm_upt_id = \'admin\' ';
                 queryStr += 'where pm_id = ' + inputData.id;
             }
         }
@@ -114,7 +115,7 @@ router.post('/edit', function(req, res){
                 // ###### hyelim -> 로그인한 id로 변경
                 queryStr += 'values (\'' + inputData.prgName + '\', \'' + inputData.prgExp + '\', \''
                     + inputData.formName + '\', \'' + inputData.formExp + '\', \''
-                    + inputData.funName + '\', \'' + inputData.funExp + '\', getDate(), \'hyelim\')';
+                    + inputData.funName + '\', \'' + inputData.funExp + '\', getDate(), \'admin\')';
 
             } else {
                 // id가 있는 경우
@@ -126,7 +127,7 @@ router.post('/edit', function(req, res){
                 queryStr += 'pm_fun_name = \'' + inputData.funName + '\', ';
                 queryStr += 'pm_fun_exp = \'' + inputData.funExp + '\', ';
                 queryStr += 'pm_upt_dt = getDate(), ';
-                queryStr += 'pm_upt_id = \'hyelim\' ';
+                queryStr += 'pm_upt_id = \'admin\' ';
                 queryStr += 'where pm_id = ' + inputData.id;
             }
         }
@@ -138,7 +139,7 @@ router.post('/edit', function(req, res){
             queryStr += 'pm_prg_name = \'' + inputData.prgName + '\', ';
             queryStr += 'pm_prg_exp = \'' + inputData.prgExp + '\', ';
             queryStr += 'pm_upt_dt = getDate(), ';
-            queryStr += 'pm_upt_id = \'hyelim\' ';
+            queryStr += 'pm_upt_id = \'admin\' ';
             queryStr += 'where pm_prg_name = \'' + inputData.oldName + '\' ';
             queryStr += 'and pm_prg_exp = \'' + inputData.oldExp + '\' ';
         }
@@ -147,18 +148,17 @@ router.post('/edit', function(req, res){
             queryStr += 'pm_form_name = \'' + inputData.formName + '\', ';
             queryStr += 'pm_form_exp = \'' + inputData.formExp + '\', ';
             queryStr += 'pm_upt_dt = getDate(), ';
-            queryStr += 'pm_upt_id = \'hyelim\' ';
-            queryStr += 'where pm_form_name = \'' + inputData.oldName + '\' ';
-            queryStr += 'and pm_form_exp = \'' + inputData.oldExp + '\' ';
+            queryStr += 'pm_upt_id = \'admin\' ';
+            queryStr += 'where pm_prg_name = \'' + inputData.prgName + '\' ';
+            queryStr += 'and pm_form_name = \'' + inputData.oldName + '\' ';
         }
         else if(inputData.gbn == 'fun'){
             queryStr = 'update prg_mng set ';
             queryStr += 'pm_fun_name = \'' + inputData.funName + '\', ';
             queryStr += 'pm_fun_exp = \'' + inputData.funExp + '\', ';
             queryStr += 'pm_upt_dt = getDate(), ';
-            queryStr += 'pm_upt_id = \'hyelim\' ';
-            queryStr += 'where pm_fun_name = \'' + inputData.oldName + '\' ';
-            queryStr += 'and pm_fun_exp = \'' + inputData.oldExp + '\' ';
+            queryStr += 'pm_upt_id = \'admin\' ';
+            queryStr += 'where pm_id = ' + inputData.id;
         }
     }
 
@@ -167,19 +167,18 @@ router.post('/edit', function(req, res){
         queryStr = 'update prg_mng set ';
         queryStr += 'pm_del_yn = \'Y\', ';
         queryStr += 'pm_upt_dt = getDate(), ';
-        queryStr += 'pm_upt_id = \'hyelim\' ';
+        queryStr += 'pm_upt_id = \'admin\' ';
 
         if(inputData.gbn == 'prg'){
             queryStr += 'where pm_prg_name = \'' + inputData.prgName + '\' ';
             queryStr += 'and pm_prg_exp = \'' + inputData.prgExp + '\' ';
         }
         else if(inputData.gbn == 'form'){
-            queryStr += 'where pm_form_name = \'' + inputData.formName + '\' ';
-            queryStr += 'and pm_form_exp = \'' + inputData.formExp + '\' ';
+            queryStr += 'where pm_prg_name = \'' + inputData.prgName + '\' ';
+            queryStr += 'and pm_form_name = \'' + inputData.formName + '\' ';
         }
         else if(inputData.gbn == 'fun'){
-            queryStr += 'where pm_fun_name = \'' + inputData.funName + '\' ';
-            queryStr += 'and pm_fun_exp = \'' + inputData.funExp + '\' ';
+            queryStr += 'where pm_id = ' + inputData.id ;
         }
     }
 

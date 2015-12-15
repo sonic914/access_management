@@ -4,9 +4,9 @@
 $(document).ready(function () {
 
     // 프로그램관리 테이블 병합 1: 프로그램, 2: 폼, 3: 기능(펑션)
-    $('#programListTable').rowspan(1);
-    $('#programListTable').rowspan(2);
-    $('#programListTable').rowspan(3);
+    //$('#programListTable').rowspan(1);
+    //$('#programListTable').rowspan(2);
+    //$('#programListTable').rowspan(3);
 
     // 버튼 클릭 이벤트
     $('button').click(function () {
@@ -55,8 +55,8 @@ $(document).ready(function () {
             var thisObj = $(this);
 
             if(buttonName[0] == 'prg'){
-                data.prgName = $(this).parent().parent().find('div input[name="prgName"]').val();
-                data.prgExp = $(this).parent().parent().find('div input[name="prgExp"]').val();
+                data.prgName = $.trim($(this).parent().parent().find('div input[name="prgName"]').val());
+                data.prgExp = $(this).parent().parent().find('div input[name="prgExp"]').val().trim();
 
                 if(buttonName[2] == 'U'){
                     data.id = $(this).parent().parent().parent().find('td span input[name="id"]').val();
@@ -66,16 +66,12 @@ $(document).ready(function () {
                 checkInput(data.prgName);
             }
             else if(buttonName[0] == 'form'){
-                if(buttonName[2] == 'A'){
-                    data.prgName = $(this).parent().parent().parent().find('td div input[name="prgName"]').val();
-                    data.prgExp = $(this).parent().parent().parent().find('td div input[name="prgExp"]').val();
-                }
-                else if(buttonName[2] == 'U'){
-                    data.oldName = $(this).parent().parent().find('div input[name="formName"]').attr('oldValue0');
-                    data.oldExp = $(this).parent().parent().find('div input[name="formExp"]').attr('oldValue1');
-                }
+                data.prgName = $.trim($(this).parent().parent().parent().find('td div input[name="prgName"]').val());
+                data.prgExp = $(this).parent().parent().parent().find('td div input[name="prgExp"]').val();
+                data.oldName = $(this).parent().parent().find('div input[name="formName"]').attr('oldValue0');
+                data.oldExp = $(this).parent().parent().find('div input[name="formExp"]').attr('oldValue1');
 
-                data.formName = $(this).parent().parent().find('div input[name="formName"]').val();
+                data.formName = $.trim($(this).parent().parent().find('div input[name="formName"]').val());
                 data.formExp = $(this).parent().parent().find('div input[name="formExp"]').val();
                 data.id = $(this).parent().parent().parent().find('td ul li span input[name="id"]').val();
                 checkInput(data.formName);
@@ -84,9 +80,9 @@ $(document).ready(function () {
                 var tagName = 'span';
 
                 if(buttonName[2] == 'A'){
-                    data.prgName = $(this).parent().parent().parent().parent().parent().find('td div input[name="prgName"]').val();
+                    data.prgName = $.trim($(this).parent().parent().parent().parent().parent().find('td div input[name="prgName"]').val());
                     data.prgExp = $(this).parent().parent().parent().parent().parent().find('td div input[name="prgExp"]').val();
-                    data.formName = $(this).parent().parent().parent().parent().parent().find('td div input[name="formName"]').val();
+                    data.formName = $.trim($(this).parent().parent().parent().parent().parent().find('td div input[name="formName"]').val());
                     data.formExp = $(this).parent().parent().parent().parent().parent().find('td div input[name="formExp"]').val();
                 }
                 else if(buttonName[2] == 'U'){
@@ -94,7 +90,7 @@ $(document).ready(function () {
                     data.oldExp = $(this).parent().parent().find('span input[name="funExp"]').attr('oldValue1');
                 }
 
-                data.funName = $(this).parent().parent().find('span input[name="funName"]').val();
+                data.funName = $.trim($(this).parent().parent().find('span input[name="funName"]').val());
                 data.funExp = $(this).parent().parent().find('span input[name="funExp"]').val();
                 data.id = $(this).parent().parent().find('span input[name="id"]').val();
                 checkInput(data.funName);
@@ -113,7 +109,7 @@ $(document).ready(function () {
                 type: 'post',
                 data: data,
                 success: function (data) {
-                    console.log('success');
+                    /*
                     if (buttonName[2] == 'U') {
                         console.log('else');
                         // input box 비활성화
@@ -126,8 +122,9 @@ $(document).ready(function () {
                         $(thisObj).attr('name', buttonName[0] + '_' + buttonName[2]);
                     }
                     else {
+                    */
                         location.reload();
-                    }
+                    //}
                 }
             });
         }

@@ -6,7 +6,8 @@ var router = express.Router();
 var config = {
   user: 'sa',
   password: '1q@',
-  server: '192.168.35.201',
+  //server: '192.168.35.201',
+  server: 'hawaii402.ddns.net',
   database: 'pam',
   stream: true,
   option: {
@@ -35,7 +36,6 @@ router.post ('/', function(req, res, next) {
     request.on('error', function (err) {
       console.log('----------------error_post-----------------');
       console.log(err);
-      res.send({message:'fail'});
     });
 
     request.on('row', function(row){
