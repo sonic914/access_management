@@ -4,9 +4,9 @@
 $(document).ready(function () {
 
     // 프로그램관리 테이블 병합 1: 프로그램, 2: 폼, 3: 기능(펑션)
-    //$('#programListTable').rowspan(1);
-    //$('#programListTable').rowspan(2);
-    //$('#programListTable').rowspan(3);
+    $('#programListTable').rowspan(1);
+    $('#programListTable').rowspan(2);
+    $('#programListTable').rowspan(3);
 
     // 버튼 클릭 이벤트
     $('button').click(function () {

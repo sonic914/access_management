@@ -74,6 +74,7 @@ router.post('/getForbiddenPrg', function (req, res) {
         queryStr += ' where pgm.pgm_pm_id = pm.pm_id';
         queryStr += '   and pgm.pgm_user_group = \'' + userGroup + '\'';
         queryStr += '   and pgm.pgm_del_yn =\'N\'';
+        queryStr += '   and pm.pm_del_yn =\'N\'';
 
         console.log('queryStr :: '+queryStr);
         request.query(queryStr);
