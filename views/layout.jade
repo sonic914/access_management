@@ -7,7 +7,10 @@ html
     title 제주한라병원 권한관리프로그램
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', integrity='sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==', crossorigin='anonymous')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-datepicker.css')
+
     script(type='text/javascript', src='javascripts/jquery-2.1.4.js').
+    script(type='text/javascript', src='javascripts/bootstrap-datepicker.js').
     script(type='text/javascript', src='javascripts/util.js').
     script.
       // get url
@@ -19,6 +22,9 @@ html
       }
       else if(pathname[0] == '/forbidden'){
         $('head').append('<script src="javascripts/js_forbidden.js"><\/script>');
+      }
+      else if(pathname[0] == '/exception'){
+        $('head').append('<script src="javascripts/js_exception.js"><\/script>');
       }
   body
     nav(class='navbar navbar-default navbar-fixed-top')
