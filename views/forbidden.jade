@@ -7,14 +7,14 @@ block content
             h5 '권한관리'에서는 한진EMR에 등록된 그룹에서 접근할 수 없는 기능을 조회, 추가, 삭제하실 수 있습니다.
 
         div(class='form-group')
-            label(for="programSelect", style='width:10%; float:left;') 프로그램
+            label(for="programSelect", style='margin:5px 10px 0 10px; float:left;') 프로그램
             select(id='programSelect', class="form-control", style='width:30%; float:left;', onchange='getFormSelectOption(this);')
             select(id='formSelect', class="form-control", style='width:30%; float:left;', onchange='getFunSelectOption(this);')
             select(id='funSelect', class="form-control", style='width:30%; float:left', onchange='selectChange(this);')
             br
             hr
             div(class='row')
-                label(for="allGroupsDiv", class='col-md-4', style='float:left;') 그룹
+                label(for="allGroupsDiv", class='col-md-4', style='margin-left:10px; float:left;') 그룹
                 div(id='allGroupsDiv', class='col-md-12')
                     input(type='hidden', value=pgmSeq, name='oldPgmSeq')
                 br
