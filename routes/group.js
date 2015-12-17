@@ -25,7 +25,7 @@ router.get('/', function (req, res, next) {
 
   var queryStr = 'select USER_GROUP, group_concat(SABUN_ID, \'_\', USER_NAME) USER_NAME ';
   queryStr += 'from UserInfo ';
-  queryStr += 'where USER_GROUP != \'Goodbye\' and USER_GROUP is not null ';
+  queryStr += 'where USER_GROUP != \'Goodbye\' and USER_GROUP is not null  and USER_USE_YN = \'Y\'';
   queryStr += 'GROUP BY USER_GROUP ';
   queryStr += 'ORDER BY USER_GROUP;';
 

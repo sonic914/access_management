@@ -12,8 +12,8 @@ block content
                     th(style='width: 70%;') 구성원
             tbody
                 tr
-                - console.log(data.length);
-                - for (var i = 0; i< data.length; i++)
-                    tr
-                        td= data[i].USER_GROUP
-                        td= data[i].USER_NAME
+                if data != null
+                    - for (var i = 0; i< data.length; i++)
+                        tr
+                            td= data[i].USER_GROUP
+                            td= data[i].USER_NAME
