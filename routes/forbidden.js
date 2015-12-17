@@ -5,11 +5,10 @@ var router = express.Router();
 
 // mssql db info
 var config = {
-  user: 'sa',
-  password: '1q@',
-  //server: '192.168.35.201',
-  server: 'hawaii402.ddns.net',
-  database: 'pam',
+  user: 'hpam_mng',
+  password: 'halla1@',
+  server: '192.100.100.133',
+  database: 'HPAM',
   stream: true,
   option: {
     encrypt: true
@@ -17,10 +16,9 @@ var config = {
 };
 
 var mysql_connection = mysql.createConnection({
-  //host: '192.168.35.201',
-  host: 'hawaii402.ddns.net',
-  user: 'hyelimirane',
-  password: 'yayayaya1@'
+  host: '192.100.100.76',
+  user: 'latte',
+  password: 'latte'
 });
 
 
@@ -148,7 +146,7 @@ router.post('/getAllGroups', function (req, res) {
 
   mysql_connection.query('use latte;');
   var myQueryStr = 'select USER_GROUP ';
-  myQueryStr += 'from user_info ';
+  myQueryStr += 'from UserInfo ';
   myQueryStr += 'where USER_GROUP != \'Goodbye\' and USER_GROUP is not null ';
   myQueryStr += 'GROUP BY USER_GROUP ';
   myQueryStr += 'ORDER BY USER_GROUP;';

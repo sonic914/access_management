@@ -4,11 +4,10 @@ var router = express.Router();
 
 // mssql db info
 var config = {
-    user: 'sa',
-    password: '1q@',
-    //server: '192.168.35.201',
-    server: 'hawaii402.ddns.net',
-    database: 'pam',
+    user: 'hpam_mng',
+    password: 'halla1@',
+    server: '192.100.100.133',
+    database: 'HPAM',
     stream: true,
     option: {
         encrypt: true

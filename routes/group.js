@@ -3,10 +3,9 @@ var mysql = require('mysql');
 var router = express.Router();
 
 var mysql_connection = mysql.createConnection({
-  //host: '192.168.35.201',
-  host:'hawaii402.ddns.net',
-  user: 'hyelimirane',
-  password: 'yayayaya1@'
+  host: '192.100.100.76',
+  user: 'latte',
+  password: 'latte'
 });
 
 
@@ -27,7 +26,7 @@ router.get('/', function (req, res, next) {
   mysql_connection.query('use latte;');
 
   var queryStr = 'select USER_GROUP, group_concat(SABUN_ID, \'_\', USER_NAME) USER_NAME ';
-  queryStr += 'from user_info ';
+  queryStr += 'from UserInfo ';
   queryStr += 'where USER_GROUP != \'Goodbye\' and USER_GROUP is not null ';
   queryStr += 'GROUP BY USER_GROUP ';
   queryStr += 'ORDER BY USER_GROUP;';
