@@ -67,6 +67,7 @@ router.post('/getForbiddenPrg', function (req, res) {
         var request = new sql.Request();
         request.stream = true;
 
+        var data = [];
         var queryStr = '';
         queryStr = 'select pgm.pgm_seq, pm.pm_id, concat(pm.pm_prg_name,\'_\', pm_form_name, \'_\',pm.pm_fun_name) prg_name,';
         queryStr += ' concat(pm.pm_prg_exp,\'_\', pm_form_exp, \'_\',pm.pm_fun_exp) prg_exp';
@@ -79,14 +80,12 @@ router.post('/getForbiddenPrg', function (req, res) {
         console.log('queryStr :: '+queryStr);
         request.query(queryStr);
 
-        var data = [];
-
         request.on('row', function (row) {
             data.push({pgm_seq:row.pgm_seq, pm_id:row.pm_id, prg_name:row.prg_name, prg_exp:row.prg_exp});
         });
 
         request.on('error', function (err) {
-            console.log('----------------error-----------------');
+            console.log('----------------/getForbiddenPrg_error-----------------');
             console.log(err);
         });
 

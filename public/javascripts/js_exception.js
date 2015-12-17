@@ -141,7 +141,7 @@ function getExcUserPrg(){
                     innerHTML += '  <td>' + list[i].pm_fun_exp + '</td>';
                     innerHTML += '  <td>' + list[i].pum_str_date.substr(0, 10) + '</td>';
                     innerHTML += '  <td>' + list[i].pum_end_date.substr(0, 10) + '</td>';
-                    innerHTML += '  <td> <input type=\'button\' onclick=\'delExcUserPrg(' + list[i].pum_seq +');\' class=\'btn btn-xs btn-primary\' value=\'삭제\' />';
+                    innerHTML += '  <td> <input type=\'button\' onclick=\'delExcUserPrg(' + list[i].pum_seq +');\' class=\'btn btn-xs btn-danger\' value=\'삭제\' />';
                     //innerHTML += '<input type=\'hidden\' name=\'pumSeq\' value=' + list[i].pum_seq + '>';
                     innerHTML += '<input type=\'hidden\' name=\'fullName\' value=' + list[i].pm_prg_name + '_' + list[i].pm_form_name + '_' + list[i].pm_fun_name + '></td>';
                     innerHTML += '</tr>';
