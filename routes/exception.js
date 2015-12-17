@@ -21,6 +21,7 @@ var mysql_connection = mysql.createConnection({
     password: 'latte'
 });
 
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     var auth = req.cookies['auth'];

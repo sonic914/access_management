@@ -12,7 +12,7 @@ var config = {
   option: {
     encrypt: true
   }
-}
+};
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

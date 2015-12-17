@@ -12,7 +12,7 @@ var config = {
     option: {
         encrypt: true
     }
-}
+};
 
 /* GET users listing. */
 router.get('/', function (req, res) {

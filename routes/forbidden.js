@@ -22,6 +22,7 @@ var mysql_connection = mysql.createConnection({
 });
 
 
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
 
