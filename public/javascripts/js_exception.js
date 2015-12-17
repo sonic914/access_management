@@ -44,7 +44,6 @@ $(document).ready(function () {
                     $('#user_group option:first').attr('selected');
 
                     getForbiddenPrg();
-                    getExcUserPrg();
                 }
                 else{
                     alert('사번에 해당하는 그룹이 없습니다.');
@@ -80,7 +79,7 @@ $(document).ready(function () {
             data: data,
             success: function (data) {
                 getForbiddenPrg();
-                getExcUserPrg();
+                //getExcUserPrg();
             }
         });
     });
@@ -94,6 +93,7 @@ function getForbiddenPrg(){
         type: 'post',
         data: {userGroup:userGroup},
         success: function (data) {
+            getExcUserPrg();
             var list = data.data;
 
             if(list.length > 0){
