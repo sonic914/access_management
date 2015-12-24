@@ -2,11 +2,34 @@ var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
 
-var mysql_connection = mysql.createConnection({
+var mysql_db_config = {
   host: '192.100.100.76',
   user: 'latte',
-  password: 'latte'
-});
+  password: 'latte',
+  database: 'latte'
+};
+
+var mysql_connection;
+function hanleDisconnect(){
+  mysql_connection = mysql.createConnection(mysql_db_config);
+
+  mysql_connection.connect(function(err){
+    if(err){
+      console.log('error when connection to db: ', err);
+      setTimeout(hanleDisconnect, 2000)
+    }
+  });
+
+  mysql_connection.on('error', function(err){
+    console.log('mysql db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST'){
+      hanleDisconnect();
+    } else {
+      throw err;
+    }
+  });
+}
+hanleDisconnect();
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {

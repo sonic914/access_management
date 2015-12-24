@@ -15,12 +15,34 @@ var config = {
   }
 };
 
-var mysql_connection = mysql.createConnection({
+var mysql_db_config = {
   host: '192.100.100.76',
   user: 'latte',
-  password: 'latte'
-});
+  password: 'latte',
+  database: 'latte'
+};
 
+var mysql_connection;
+function hanleDisconnect(){
+  mysql_connection = mysql.createConnection(mysql_db_config);
+
+  mysql_connection.connect(function(err){
+    if(err){
+      console.log('error when connection to db: ', err);
+      setTimeout(hanleDisconnect, 2000)
+    }
+  });
+
+  mysql_connection.on('error', function(err){
+    console.log('mysql db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST'){
+      hanleDisconnect();
+    } else {
+      throw err;
+    }
+  });
+}
+hanleDisconnect();
 
 
 /* GET users listing. */
@@ -223,16 +245,17 @@ router.post('/edit', function (req, res, next) {
     request.query(queryStr);
 
     request.on('row', function (row) {
-      cnt++;
     });
 
     request.on('error', function (err) {
-      console.log('----------------error-----------------');
+      console.log('----------------forbidden update error-----------------');
       console.log(err);
     });
 
     request.on('done', function (returnValue) {
       // 쿼리를 두번 실행하므로, 처음 쿼리 실행 시 응답 보내지 않기 위해
+      cnt++;
+      console.log('##################### :: '+cnt);
       if(cnt == 2){
         res.send({title: 'Express', message:'success'});
       }

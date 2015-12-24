@@ -2,7 +2,7 @@ var express = require('express');
 var sql = require('mssql');
 var router = express.Router();
 
-// db info
+// mssql db info
 var config = {
   user: 'hpam_mng',
   password: 'halla1@',

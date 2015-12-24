@@ -24,7 +24,8 @@ $(document).ready(function () {
             type: 'post',
             data: {pmId:pmId, checkedG:checkedG},
             success: function (data) {
-                location.reload();
+                debugger;
+                alert('저장되었습니다.');
             }
         });
     });
@@ -112,7 +113,6 @@ function getAllGroups(){
             for(var i =0; i< data.data.length; i++){
                 $('#allGroupsDiv input[type=checkbox]').each(function(index, item){
                     if(data.data[i].pgm_user_group == item.value){
-                        console.log('yahoo');
                         $(item).attr('pgm_seq', data.data[i].pgm_seq);
                         $(item).attr('checked', 'checked');
                         //break;
